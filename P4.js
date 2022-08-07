@@ -4,15 +4,21 @@ axios.defaults.withCredentials = true;
 
 // const data = { from: '20220606', to: '20220606' };
 
-const headers = {};
 let result;
+let from = '20220606'
+let to = '20220612'
+
+let date = document.getElementsByClassName('date')
+
+date[0].textContent = `${from} ~ ${to}`
+
 
 axios({
     method: 'post',
-    url: "http://localhost:3030",
+    url: `http://localhost:8088`,
     data: {
-        from: '20220606',
-        to: '20220610'
+        from: from,
+        to: to
     }
 })
 .then((res) => {
@@ -23,6 +29,7 @@ axios({
     let wednesday = document.getElementsByClassName('wednesday')
     let thursday = document.getElementsByClassName('thursday')
     let friday = document.getElementsByClassName('friday')
+
     
     let dayCount = 0;
     let count = 0;

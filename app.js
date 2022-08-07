@@ -6,7 +6,7 @@ const __dirname = path.resolve();
 
 const app = express();
 
-const port = 3030;
+const port = 8088;
 
 const serviceKey = "111f48f0039644d087e84073ded0515d"
 const url = `http://open.neis.go.kr/hub/hisTimetable`
@@ -16,11 +16,15 @@ app.use(express.static(__dirname))
 app.use(cors({origin: true, credentials: true}))
 app.use(express.json())
 
+app.get('/', (req, res) => {
+    res.send(__dirname + './index.html')
+})
+
 app.post('/',  async (req, res) => {
     console.log(req.body);
     console.log("------------------");
     const result = await axios({
-        url: url,
+        url: url, 
         method: 'get',
         params: {
             Key: serviceKey,
@@ -46,6 +50,6 @@ app.post('/',  async (req, res) => {
     res.status(200).send(result.data);
 })
 
-app.listen(port, () => {
-    console.log(`server listening on ${port}`);
+app.listen(process.env.PORT || port, () => {
+    console.log(`server listening on ${process.env.PORT || port}`);
 })
