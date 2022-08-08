@@ -1,10 +1,20 @@
 // import axios from 'axios';
 
+/** 보류
+ * --------------------------------
+ * 단축시 시간표 틀어짐 문제 해결하기
+ *  시간표 from값 기준 선정하기
+ * --------------------------------
+ */
+
+
 axios.defaults.withCredentials = true;
 
 let result;
-let from = '20220606'
-let to = '20220612'
+
+
+let from = `${year}${month}${date}`
+let to = `${year}${month}${Number(date)+5}`
 
 let currentDate = document.getElementsByClassName('date')
 let today = new Date()
@@ -22,9 +32,15 @@ if (month < 10) {
 if (date < 10) {
     date = '0' + date
 }
+while (day != 1) {
+    if (day = 0 || day == 6) {
+        date++
+    } else {
+        date--
+    }
+}
 
-
-currentDate[0].textContent = `${year}${month}${date}`
+currentDate[0].textContent = from
 
 
 axios({
