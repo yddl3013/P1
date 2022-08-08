@@ -2,15 +2,29 @@
 
 axios.defaults.withCredentials = true;
 
-// const data = { from: '20220606', to: '20220606' };
-
 let result;
 let from = '20220606'
 let to = '20220612'
 
-let date = document.getElementsByClassName('date')
+let currentDate = document.getElementsByClassName('date')
+let today = new Date()
 
-date[0].textContent = `${from} ~ ${to}`
+let year = today.getFullYear()
+let month = today.getMonth() + 1
+let date = today.getDate()
+let day = today.getDay()
+
+
+if (month < 10) {
+    month =  '0' + month
+}
+
+if (date < 10) {
+    date = '0' + date
+}
+
+
+currentDate[0].textContent = `${year}${month}${date}`
 
 
 axios({
