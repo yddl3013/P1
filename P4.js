@@ -13,8 +13,6 @@ axios.defaults.withCredentials = true;
 let result;
 
 
-let from = `${year}${month}${date}`
-let to = `${year}${month}${Number(date)+5}`
 
 let currentDate = document.getElementsByClassName('date')
 let today = new Date()
@@ -23,6 +21,10 @@ let year = today.getFullYear()
 let month = today.getMonth() + 1
 let date = today.getDate()
 let day = today.getDay()
+
+
+let from = `${year}${month}${date}`
+let to = `${year}${month}${Number(date)+5}`
 
 
 if (month < 10) {
